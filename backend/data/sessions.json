@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ses_001",
+    "participants": ["usr_001", "usr_002"],
+    "topic": "Dynamic Programming - Longest Common Subsequence",
+    "difficulty": "medium",
+    "status": "completed",
+    "startedAt": "2026-04-10T14:00:00Z",
+    "endedAt": "2026-04-10T14:45:00Z",
+    "duration": 2700,
+    "ratings": { "usr_001": 4.5, "usr_002": 4.2 },
+    "codeSnapshot": "function lcs(s1, s2) {\n  const m = s1.length, n = s2.length;\n  const dp = Array.from({length: m+1}, () => Array(n+1).fill(0));\n  for (let i = 1; i <= m; i++)\n    for (let j = 1; j <= n; j++)\n      dp[i][j] = s1[i-1] === s2[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);\n  return dp[m][n];\n}",
+    "topicsCovered": ["dynamic-programming", "strings"],
+    "feedback": { "usr_001": { "strengths": ["Good problem decomposition", "Clean code"], "weaknesses": ["Could optimize space"], "score": 82 }, "usr_002": { "strengths": ["Fast implementation", "Edge case handling"], "weaknesses": ["Verbose variable naming"], "score": 88 } }
+  },
+  {
+    "id": "ses_002",
+    "participants": ["usr_001", "usr_003"],
+    "topic": "Graph Traversal - BFS Shortest Path",
+    "difficulty": "medium",
+    "status": "completed",
+    "startedAt": "2026-04-12T16:00:00Z",
+    "endedAt": "2026-04-12T16:50:00Z",
+    "duration": 3000,
+    "ratings": { "usr_001": 3.8, "usr_003": 4.0 },
+    "codeSnapshot": "function bfs(graph, start, end) {\n  const queue = [[start, [start]]];\n  const visited = new Set([start]);\n  while (queue.length) {\n    const [node, path] = queue.shift();\n    if (node === end) return path;\n    for (const neighbor of graph[node]) {\n      if (!visited.has(neighbor)) {\n        visited.add(neighbor);\n        queue.push([neighbor, [...path, neighbor]]);\n      }\n    }\n  }\n  return null;\n}",
+    "topicsCovered": ["graphs", "bfs"],
+    "feedback": { "usr_001": { "strengths": ["Correct BFS implementation"], "weaknesses": ["Struggled with graph representation"], "score": 72 }, "usr_003": { "strengths": ["Strong graph intuition", "Efficient solution"], "weaknesses": ["Could explain approach better"], "score": 78 } }
+  },
+  {
+    "id": "ses_003",
+    "participants": ["usr_002", "usr_005"],
+    "topic": "Tree Problems - Binary Tree Maximum Path Sum",
+    "difficulty": "hard",
+    "status": "completed",
+    "startedAt": "2026-04-14T10:00:00Z",
+    "endedAt": "2026-04-14T11:00:00Z",
+    "duration": 3600,
+    "ratings": { "usr_002": 4.7, "usr_005": 4.9 },
+    "codeSnapshot": "function maxPathSum(root) {\n  let max = -Infinity;\n  function dfs(node) {\n    if (!node) return 0;\n    const left = Math.max(0, dfs(node.left));\n    const right = Math.max(0, dfs(node.right));\n    max = Math.max(max, left + right + node.val);\n    return Math.max(left, right) + node.val;\n  }\n  dfs(root);\n  return max;\n}",
+    "topicsCovered": ["trees", "recursion", "dynamic-programming"],
+    "feedback": { "usr_002": { "strengths": ["Good recursion understanding"], "weaknesses": ["Needed hints for negative values"], "score": 85 }, "usr_005": { "strengths": ["Excellent teaching", "Optimal solution first try"], "weaknesses": ["None noted"], "score": 96 } }
+  },
+  {
+    "id": "ses_004",
+    "participants": ["usr_004", "usr_001"],
+    "topic": "Two Pointers - Container With Most Water",
+    "difficulty": "medium",
+    "status": "completed",
+    "startedAt": "2026-04-16T09:00:00Z",
+    "endedAt": "2026-04-16T09:40:00Z",
+    "duration": 2400,
+    "ratings": { "usr_004": 4.0, "usr_001": 4.1 },
+    "codeSnapshot": "function maxArea(height) {\n  let left = 0, right = height.length - 1, max = 0;\n  while (left < right) {\n    max = Math.max(max, Math.min(height[left], height[right]) * (right - left));\n    if (height[left] < height[right]) left++;\n    else right--;\n  }\n  return max;\n}",
+    "topicsCovered": ["two-pointers", "arrays"],
+    "feedback": { "usr_004": { "strengths": ["Learning quickly", "Good questions"], "weaknesses": ["Took time to understand two-pointer concept"], "score": 68 }, "usr_001": { "strengths": ["Patient explanation", "Good mentoring"], "weaknesses": ["Could have let peer think more"], "score": 75 } }
+  }
+]
