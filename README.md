@@ -16,7 +16,7 @@ interviewmesh/
 ├── backend/           # Node.js + Express + Socket.io
 │   └── data/          # JSON file-based database (zero setup)
 └── ml-service/        # Python + FastAPI + scikit-learn + XGBoost
-    └── models/        # ML model implementations
+    └── models/        # ML model implementation
 ```
 
 ## 🧠 ML Features
